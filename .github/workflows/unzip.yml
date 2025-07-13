@@ -9,21 +9,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          
+          fetch-depth: 0  # 获取完整历史，确保分支同步
+          ref: main  # 明确指定拉取 main 分支
+
       - name: Unzip file
         run: |
           tar -xzvf code.tar.gz
-          rm code.tar.gz
-          
-      - name: Debug - List files
+          rm code.tar.gz  # 解压后删除压缩包
+
+      - name: Force commit and push
         run: |
-          ls -al  # 列出当前目录所有文件
-          pwd    # 打印当前路径
+          # 配置 Git 身份
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           
-      - name: Commit and push changes
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: true
+          # 强制添加所有文件（包括被忽略的文件，可选）
+          git add -f .
+          
+          # 无论是否有变更，强制提交（避免无变更时失败）
+          git commit -m "Unzip and push code" || echo "No changes, but force push anyway"
+          
+          # 强制推送到远程 main 分支，覆盖远程内容
+          git push origin main --force
