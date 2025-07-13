@@ -9,17 +9,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取所有历史记录
+          fetch-depth: 0
           
       - name: Unzip file
         run: |
           tar -xzvf code.tar.gz
           rm code.tar.gz
           
+      - name: Debug - List files
+        run: |
+          ls -al  # 列出当前目录所有文件
+          pwd    # 打印当前路径
+          
       - name: Commit and push changes
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          force: true  # 强制推送，覆盖远程分支
-          tags: false
+          force: true
