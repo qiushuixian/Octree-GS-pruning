@@ -329,14 +329,14 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     #score.quantile(0.2).item()
     #0.000000005
     # 应用 mask 到所有属性
-    '''
+    
     xyz =xyz[mask_filter]
     screenspace_points = screenspace_points[mask_filter]
     color = color[mask_filter]
     scaling = scaling[mask_filter]
     opacity = opacity[mask_filter]
     rot=rot[mask_filter]
-    '''
+    
     
     rasterizer = GaussianRasterizer(raster_settings=raster_settings)
     
