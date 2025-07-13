@@ -1,4 +1,4 @@
-# *Octree*-GS: Towards Consistent Real-time Rendering with LOD-Structured 3D Gaussians
+# Octree-GS-pruning
 
 对高斯点的剪枝在gaussian_renderer/_ini_.py第312行开始
 实际需要的计算应该只有3次乘法，一次LUT，不带来额外的访存
