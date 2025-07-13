@@ -1,0 +1,25 @@
+name: Unzip Files
+on: [push]
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取所有历史记录
+          
+      - name: Unzip file
+        run: |
+          tar -xzvf code.tar.gz
+          rm code.tar.gz
+          
+      - name: Commit and push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true  # 强制推送，覆盖远程分支
+          tags: false
