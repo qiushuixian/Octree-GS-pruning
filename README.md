@@ -1,6 +1,13 @@
 # *Octree*-GS: Towards Consistent Real-time Rendering with LOD-Structured 3D Gaussians
 
 对高斯点的剪枝在gaussian_renderer/_ini_.py第312行开始
+实际需要的计算应该只有3次乘法，一次LUT，不带来额外的访存
+
+
+
+
+
+
 
 
 ### [Project Page](https://city-super.github.io/octree-gs/) | [Paper](https://arxiv.org/abs/2403.17898) | [Viewers for Windows](https://drive.google.com/file/d/12jg6Upko_pAfX3f4jgnb1Q2BhSQDPScE/view?usp=sharing)
